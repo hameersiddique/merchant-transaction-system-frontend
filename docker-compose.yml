@@ -1,0 +1,30 @@
+services:
+  frontend:
+    build:
+      context: .
+      dockerfile: ${FRONTEND_DOCKERFILE:-Dockerfile}
+      args:
+        API_BASE_URL: ${API_BASE_URL}
+        API_URL: ${API_URL:-}
+    container_name: ${FRONTEND_CONTAINER_NAME:-merchant-frontend}
+    environment:
+      NODE_ENV: ${NODE_ENV:-development}
+      API_BASE_URL: ${API_BASE_URL}
+      API_URL: ${API_URL:-}
+      NEXT_TELEMETRY_DISABLED: ${NEXT_TELEMETRY_DISABLED:-1}
+    ports:
+      - "${FRONTEND_HOST_PORT:-3000}:${FRONTEND_CONTAINER_PORT:-3000}"
+    volumes:
+      - ./src:/app/src
+      - ./public:/app/public
+      - /app/node_modules
+      - /app/.next
+    restart: ${RESTART_POLICY:-unless-stopped}
+    command: ${FRONTEND_START_COMMAND:-npm run dev}
+    networks:
+      - merchant-network
+
+networks:
+  merchant-network:
+    external: true
+    name: merchant-network
