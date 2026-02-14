@@ -16,9 +16,9 @@ import { FormEvent, useState } from "react";
 const RegisterForm = () => {
   const router = useRouter();
   const { register } = useAuth();
-  const [name, setName] = useState("x");
-  const [email, setEmail] = useState("john.doe@yahoo.com");
-  const [password, setPassword] = useState("SecurePass123!!!");
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const [errors, setErrors] = useState<{
     name?: string;
     email?: string;
@@ -160,7 +160,7 @@ const RegisterForm = () => {
             autoComplete="new-password"
             label="Password"
             placeholder="Enter your password"
-            helperText={errors.password || "Minimum 6 characters"}
+            helperText={errors.password || "Minimum 8 characters"}
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             error={errors.password}
