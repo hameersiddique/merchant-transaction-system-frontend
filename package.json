@@ -4,6 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
+    "dev:docker": "echo 'Installing dependencies...' && npm install && echo 'Starting dev server...' && npm run dev 2>&1 | grep -v 'Failed to benchmark'",
     "build": "next build",
     "start": "next start",
     "lint": "eslint"
@@ -19,7 +20,7 @@
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4",
-    "@types/node": "^20",
+    "@types/node": "^20.19.33",
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "eslint": "^9",

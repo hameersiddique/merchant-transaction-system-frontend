@@ -16,9 +16,9 @@ import { FormEvent, useState } from "react";
 const RegisterForm = () => {
   const router = useRouter();
   const { register } = useAuth();
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [name, setName] = useState("x");
+  const [email, setEmail] = useState("john.doe@yahoo.com");
+  const [password, setPassword] = useState("SecurePass123!!!");
   const [errors, setErrors] = useState<{
     name?: string;
     email?: string;

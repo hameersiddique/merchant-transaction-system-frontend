@@ -12,6 +12,8 @@ services:
       API_BASE_URL: ${API_BASE_URL}
       API_URL: ${API_URL:-}
       NEXT_TELEMETRY_DISABLED: ${NEXT_TELEMETRY_DISABLED:-1}
+      TURBOPACK_BENCHMARK: "0"
+      TURBOPACK_SUPPRESS_BENCHMARKS: 1
     ports:
       - "${FRONTEND_HOST_PORT:-3000}:${FRONTEND_CONTAINER_PORT:-3000}"
     volumes:
@@ -20,11 +22,4 @@ services:
       - /app/node_modules
       - /app/.next
     restart: ${RESTART_POLICY:-unless-stopped}
-    command: ${FRONTEND_START_COMMAND:-npm run dev}
-    networks:
-      - merchant-network
-
-networks:
-  merchant-network:
-    external: true
-    name: merchant-network
+    command: ["npm", "run", "dev:docker"]
